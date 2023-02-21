@@ -1,6 +1,6 @@
 output "address" {
   description = "The public IP of the bastion host."
-  value       = module.bastion_host.address
+  value       = google_compute_instance.bastion_host.network_interface[0].access_config[0].nat_ip
 }
 
 output "private_instance" {

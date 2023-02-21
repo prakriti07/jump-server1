@@ -3,7 +3,7 @@ output "address" {
   value       = google_compute_instance.bastion_host.network_interface[0].access_config[0].nat_ip
 }
 
-output "private_instance" {
-  description = "A reference (self_link) to the private instance"
-  value       = google_compute_instance.private.self_link
+output "private_ip" {
+  description = "Private IP of the private instance"
+  value       = google_compute_instance.private.network_interface[0].network_ip
 }

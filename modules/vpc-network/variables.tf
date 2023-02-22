@@ -8,11 +8,6 @@ variable "region" {
   type        = string
 }
 
-variable "name_prefix" {
-  description = "A name prefix used in resource names to ensure uniqueness across a project."
-  type        = string
-}
-
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 # Generally, these values won't need to be changed.

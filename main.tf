@@ -4,7 +4,7 @@ terraform {
 
 # Create a Management Network for shared services
 module "management_network" {
-  source = "../modules/vpc-network"
+  source = "./modules/vpc-network"
   project     = var.project
   region      = var.region
 }

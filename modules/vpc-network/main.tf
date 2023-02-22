@@ -23,7 +23,7 @@ resource "google_compute_subnetwork" "vpc_subnetwork_public" {
   private_ip_google_access = true
   ip_cidr_range            = cidrsubnet(var.cidr_block, var.cidr_subnetwork_width_delta, 0)
   secondary_ip_range {
-    range_name = var.public_subnetwork_secondary_range_name
+    range_name = "public-cluster"
     ip_cidr_range = cidrsubnet(
       var.secondary_cidr_block,
       var.secondary_cidr_subnetwork_width_delta,
@@ -31,7 +31,7 @@ resource "google_compute_subnetwork" "vpc_subnetwork_public" {
     )
   }
   secondary_ip_range {
-    range_name = var.public_services_secondary_range_name
+    range_name = "public-services"
     ip_cidr_range = var.public_services_secondary_cidr_block != null ? var.public_services_secondary_cidr_block : cidrsubnet(
       var.secondary_cidr_block,
       var.secondary_cidr_subnetwork_width_delta,

@@ -15,7 +15,7 @@ resource "google_compute_instance" "bastion_host" {
   name         = "bastion-vm"
   machine_type = "t2a-standard-1"
   zone         = var.zone
-  tags = [var.tag]
+  tags = ["public"]
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2204-lts-arm64"
@@ -39,7 +39,7 @@ resource "google_compute_instance" "private" {
   machine_type = "t2a-standard-1"
   zone         = var.zone
   allow_stopping_for_update = true
-  tags = [module.management_network.private]
+  tags = ["private"]
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2204-lts-arm64"

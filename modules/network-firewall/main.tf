@@ -19,7 +19,7 @@ resource "google_compute_firewall" "public_allow_all_inbound" {
   name = "bastion-public-allow-ingress"
   project = var.project
   network = var.network
-  target_tags   = [local.public]
+  target_tags   = ["public"]
   direction     = "INGRESS"
   source_ranges = ["0.0.0.0/0"]
   priority = "1000"
@@ -34,7 +34,7 @@ resource "google_compute_firewall" "public_restricted_allow_inbound" {
   name = "bastion-public-restricted-allow-ingress"
   project = var.project
   network = var.network
-  target_tags   = [local.public_restricted]
+  target_tags   = ["public-restricted"]
   direction     = "INGRESS"
   source_ranges = var.allowed_public_restricted_subnetworks
   priority = "1000"
@@ -48,7 +48,7 @@ resource "google_compute_firewall" "private_allow_all_network_inbound" {
   name = "bastion-private-allow-ingress"
   project = var.project
   network = var.network
-  target_tags = [local.private]
+  target_tags = ["private"]
   direction   = "INGRESS"
   source_ranges = [
     data.google_compute_subnetwork.public_subnetwork.ip_cidr_range,
@@ -68,10 +68,10 @@ resource "google_compute_firewall" "private_allow_restricted_network_inbound" {
   name = "bastion-allow-restricted-inbound"
   project = var.project
   network = var.network
-  target_tags = [local.private_persistence]
+  target_tags = ["private-persistence"]
   direction   = "INGRESS"
   # source_tags is implicitly within this network; tags are only applied to instances that rest within the same network
-  source_tags = [local.private, local.private_persistence]
+  source_tags = ["private", "private-persistence"]
   priority = "1000"
   allow {
     protocol = "all"
